@@ -120,7 +120,7 @@ void destroy_window(void) {
 int main(void) {
     is_running = initialize_window();
 
-    setup(); 
+    setup();
 
     while(is_running) {
         process_input();
