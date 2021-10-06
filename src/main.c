@@ -26,7 +26,7 @@ bool initialize_window(void) {
         SDL_WINDOWPOS_CENTERED,
         window_width,
         window_height,
-        0
+        SDL_WINDOW_RESIZABLE
     );
     if (!window) {
         fprintf(stderr, "Error creating SDL window.\n");
