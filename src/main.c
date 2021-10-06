@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <SDL2/SDL.h>
+#include <unistd.h> // notice this! you need it!
 
 bool is_running = false;
 
@@ -27,7 +28,6 @@ bool initialize_window(void) {
         window_height,
         0
     );
-
     if (!window) {
         fprintf(stderr, "Error creating SDL window.\n");
         return false;
@@ -44,7 +44,7 @@ bool initialize_window(void) {
 
 void setup(void) {
     // Allocate the required memory in bytes to hold the color buffer
-    color_buffer = malloc(sizeof(uint32_t) * window_width * window_height);
+    color_buffer = (uint32_t*) malloc(sizeof(uint32_t) * window_width * window_height);
 
     // Creating an SDL texture that is used to display the color buffer
     color_buffer_texture = SDL_CreateTexture(
@@ -91,6 +91,7 @@ void render_color_buffer(void) {
     );
 }
 
+
 void clear_color_buffer(uint32_t color) {
     for(int y=0; y<window_height; y++) {
         for(int x=0; x<window_width; x++) {
@@ -103,8 +104,9 @@ void render(void) {
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderClear(renderer);
 
+    clear_color_buffer(0xFFFFFF00);
+    sleep(1); 
     render_color_buffer();
-    clear_color_buffer(0xFFFFFFFF);
 
     SDL_RenderPresent(renderer);
 }
@@ -119,12 +121,12 @@ void destroy_window(void) {
 int main(void) {
     is_running = initialize_window();
 
-    setup();
+    setup(); 
+    render(); 
 
     while(is_running) {
         process_input();
         update();
-        render();
     }
 
     destroy_window();
