@@ -104,9 +104,8 @@ void render(void) {
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderClear(renderer);
 
-    clear_color_buffer(0xFFFFFF00);
-    sleep(1); 
     render_color_buffer();
+    clear_color_buffer(0xFFFFFF00);
 
     SDL_RenderPresent(renderer);
 }
@@ -122,11 +121,11 @@ int main(void) {
     is_running = initialize_window();
 
     setup(); 
-    render(); 
 
     while(is_running) {
         process_input();
         update();
+        render();
     }
 
     destroy_window();
