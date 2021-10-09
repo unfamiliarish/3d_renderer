@@ -91,6 +91,7 @@ void update(void)
 
 void draw_grid(void)
 {
+    int temp = 3;
     uint32_t grid_line = 0xFF264653;
     uint32_t grid_background = 0xFFF4A261;
 
