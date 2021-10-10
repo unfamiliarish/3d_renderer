@@ -91,17 +91,11 @@ void update(void)
 
 void draw_grid(void)
 {
-    uint32_t grid_line = 0xFF264653;
-    uint32_t grid_background = 0xFFF4A261;
-
-    for (int row = 0; row < window_height; row++)
+    for (int row = 0; row < window_height; row += 10)
     {
-        for (int col = 0; col < window_width; col++)
+        for (int col = 0; col < window_width; col += 10)
         {
-            if (row % 10 == 9 || col % 10 == 9)
-                color_buffer[row * window_width + col] = grid_line;
-            else
-                color_buffer[row * window_width + col] = grid_background;
+            color_buffer[row * window_width + col] = 0xFF333333;
         }
     }
 }
@@ -140,7 +134,7 @@ void render(void)
     draw_grid();
 
     render_color_buffer();
-    clear_color_buffer(0xFFFFFF00);
+    clear_color_buffer(0xFF000000);
 
     SDL_RenderPresent(renderer);
 }
