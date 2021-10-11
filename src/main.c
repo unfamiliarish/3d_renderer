@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 
 #include "display.h"
+#include "vector.h"
 
 bool is_running = false;
 
@@ -47,6 +48,7 @@ void render(void)
     SDL_RenderClear(renderer);
 
     draw_grid(0xFF333333);
+    draw_pixel(20, 20, 0xFFFFFF00);
     draw_rect(300, 200, 300, 150, 0xFFFF00FF);
 
     render_color_buffer();
@@ -60,6 +62,8 @@ int main(void)
     is_running = initialize_window();
 
     setup();
+
+    vec3_t myvector = {2.0, 3.0, -4.0};
 
     while (is_running)
     {
