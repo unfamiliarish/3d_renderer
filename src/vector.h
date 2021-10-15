@@ -5,7 +5,7 @@ typedef struct
 {
   float x;
   float y;
-} vect2_t;
+} vec2_t;
 
 typedef struct
 {
