@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <SDL2/SDL.h>
-#include <unistd.h> // notice this! you need it!
-
 #include "display.h"
 
 SDL_Window *window = NULL;
